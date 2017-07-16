@@ -12,21 +12,21 @@ public class Enemy_CloseCombatAttack : MonoBehaviour {
 	[SerializeField]
 	private int attackDamage = 1;
 
-	private float timeStamp;
+	private float _timeStamp;
 
 	//If it stays in a triggerboxCollider, then the player will take attackDamage ever coolDownPeriodInSeconds
 	void OnCollisionStay2D(Collision2D coll) {
 		if (isOffCooldown ()) {
 			if (coll.gameObject.tag == "Player") {
 				//Player.damage(attackDamage);
-				timeStamp = Time.time + coolDownPeriodInSeconds;
+				_timeStamp = Time.time + coolDownPeriodInSeconds;
 			}
 		}
 	}
 
 	//returns whether it is off cooldown
 	bool isOffCooldown(){
-		if (timeStamp <= Time.time) {
+		if (_timeStamp <= Time.time) {
 			return true;
 		} else {
 			return false;
